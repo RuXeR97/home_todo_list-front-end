@@ -29,5 +29,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.home_todo_list_front_end }}
         BASE_BRANCH: master
         BRANCH: gh-pages
-        FOLDER: dist/home_todo_list-front-end
+        FOLDER: dist/home-todo-list
         BUILD_SCRIPT: npm install && npm run build -- --prod
