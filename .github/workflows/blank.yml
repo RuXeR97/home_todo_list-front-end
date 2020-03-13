@@ -15,6 +15,13 @@ jobs:
     - uses: actions/setup-node@v1 #this installs node and npm for us
       with:
         node-version: '12.x'
+
+    - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
           
     - run: npm install
-    - run: ng build --prod
+    - run: npm run ng -- build --prod
