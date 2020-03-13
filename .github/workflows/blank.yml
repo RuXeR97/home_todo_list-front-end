@@ -26,7 +26,7 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v2
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.home_todo_list_front_end }}
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: dist/home_todo_list-front-end
