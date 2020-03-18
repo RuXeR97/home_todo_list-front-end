@@ -10,11 +10,9 @@ import { first } from "rxjs/operators";
   styleUrls: ["./login-page.component.scss"]
 })
 export class LoginPageComponent implements OnInit {
-  public loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
-  error = "";
+  loginForm: FormGroup;
+  isSubmitted = false;
+  returnUrl = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,29 +37,24 @@ export class LoginPageComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() {
+  get formControls() {
     return this.loginForm.controls;
   }
+  login() {
+    this.isSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
 
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
-
-    this.loading = true;
     this.authenticationService
-      .login(this.f.username.value, this.f.password.value)
+      .login(this.formControls.username.value, this.formControls.password.value)
       .pipe(first())
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.error = error;
-          this.loading = false;
+          // do sth
         }
       );
   }
