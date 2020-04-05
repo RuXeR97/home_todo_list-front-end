@@ -61,6 +61,11 @@ export class RegisterPageComponent implements OnInit {
       .subscribe(
         (data) => {
           this.router.navigate([this.returnUrl]);
+          this.snackBar.open(
+            "Registration went successfully",
+            "OK",
+            this.configuration.getSnackBarConfig()
+          );
         },
         (error) => {
           this.snackBar.open(
