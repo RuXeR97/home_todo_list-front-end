@@ -2,12 +2,21 @@
   <h2 class="login-header">Log in</h2>
   <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
     <p [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }">
-      <input type="text" placeholder="Username" formControlName="username" />
+      <input
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+        required
+        minlength="7"
+      />
     </p>
 
     <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
       <div *ngIf="formControls.username.errors.required">
         Username is required
+      </div>
+      <div *ngIf="formControls.username.errors.minlength">
+        Username should contain at least 7 characters
       </div>
     </div>
 
@@ -16,12 +25,17 @@
         type="password"
         placeholder="Password"
         formControlName="password"
+        required
+        minlength="7"
       />
     </p>
 
     <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
       <div *ngIf="formControls.password.errors.required">
         Password is required
+      </div>
+      <div *ngIf="formControls.password.errors.minlength">
+        Password should contain at least 7 characters
       </div>
     </div>
 

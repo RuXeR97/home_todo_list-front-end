@@ -1,16 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthenticationService } from "../services/authentication.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
+import { Configuration } from "../core/configuration";
+import { AuthenticationService } from "../services/authentication.service";
 
 @Component({
   selector: "app-login-page",
   templateUrl: "./login-page.component.html",
-  styleUrls: ["./login-page.component.scss"]
+  styleUrls: ["./login-page.component.scss"],
 })
 export class LoginPageComponent implements OnInit {
-  public routerLinkVariable = "/register"; // the value of the variable is string!
   loginForm: FormGroup;
   isSubmitted = false;
   returnUrl = "";
@@ -19,7 +20,9 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private snackBar: MatSnackBar,
+    private configuration: Configuration
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -30,7 +33,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ["", Validators.required],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
     });
 
     // get return url from route parameters or default to '/'
@@ -51,11 +54,15 @@ export class LoginPageComponent implements OnInit {
       .login(this.formControls.username.value, this.formControls.password.value)
       .pipe(first())
       .subscribe(
-        data => {
+        (data) => {
           this.router.navigate([this.returnUrl]);
         },
-        error => {
-          // do sth
+        (error) => {
+          this.snackBar.open(
+            error,
+            "OK",
+            this.configuration.getSnackBarConfig()
+          );
         }
       );
   }

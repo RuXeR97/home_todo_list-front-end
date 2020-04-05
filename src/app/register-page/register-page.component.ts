@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
 import { first } from "rxjs/operators";
+import { Configuration } from "../core/configuration";
+import { AuthenticationService } from "../services/authentication.service";
 
 @Component({
   selector: "app-register-page",
@@ -18,7 +20,9 @@ export class RegisterPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private snackBar: MatSnackBar,
+    private configuration: Configuration
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -59,7 +63,11 @@ export class RegisterPageComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         (error) => {
-          // do sth
+          this.snackBar.open(
+            error,
+            "OK",
+            this.configuration.getSnackBarConfig()
+          );
         }
       );
   }
