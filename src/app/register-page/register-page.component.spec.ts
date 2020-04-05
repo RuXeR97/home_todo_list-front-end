@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HurrayComponent } from './hurray.component';
+import { RegisterPageComponent } from './register-page.component';
 
-describe('HurrayComponent', () => {
-  let component: HurrayComponent;
-  let fixture: ComponentFixture<HurrayComponent>;
+describe('RegisterPageComponent', () => {
+  let component: RegisterPageComponent;
+  let fixture: ComponentFixture<RegisterPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HurrayComponent ]
+      declarations: [ RegisterPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HurrayComponent);
+    fixture = TestBed.createComponent(RegisterPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

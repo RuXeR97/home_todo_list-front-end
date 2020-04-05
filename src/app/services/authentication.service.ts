@@ -26,10 +26,10 @@ export class AuthenticationService {
     return this.http
       .post<any>(`${environment.apiUrl}/users/authenticate`, {
         username,
-        password
+        password,
       })
       .pipe(
-        map(user => {
+        map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentUser", JSON.stringify(user));
           this.currentUserSubject.next(user);
@@ -41,5 +41,22 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
+  }
+
+  register(username: string, email: string, password: string) {
+    return this.http
+      .post<any>(`${environment.apiUrl}/users/registeraccount`, {
+        username,
+        email,
+        password,
+      })
+      .pipe
+      // map((user) => {
+      //   // store user details and jwt token in local storage to keep user logged in between page refreshes
+      //   localStorage.setItem("currentUser", JSON.stringify(user));
+      //   this.currentUserSubject.next(user);
+      //   return user;
+      // })
+      ();
   }
 }

@@ -1,6 +1,10 @@
-<div class="login">
-  <h2 class="login-header">Log in</h2>
-  <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
+<div class="register">
+  <h2 class="register-header">Register account</h2>
+  <form
+    [formGroup]="registerForm"
+    class="register-container"
+    (ngSubmit)="register()"
+  >
     <p [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }">
       <input type="text" placeholder="Username" formControlName="username" />
     </p>
@@ -8,6 +12,16 @@
     <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
       <div *ngIf="formControls.username.errors.required">
         Username is required
+      </div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+      <input type="email" placeholder="Email" formControlName="email" />
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+      <div *ngIf="formControls.email.errors.required">
+        Email is required
       </div>
     </div>
 
@@ -25,12 +39,9 @@
       </div>
     </div>
 
-    <a routerLink="/register" class="btn btn-link">Register account</a>
-    <a routerLink="/forgot-password" class="btn btn-link"
-      >Did you forgot password?</a
-    >
+    <a routerLink="/login" class="btn btn-link">Log in</a>
     <p>
-      <input type="submit" value="Log in" />
+      <input type="submit" value="Register account" />
     </p>
   </form>
 </div>
