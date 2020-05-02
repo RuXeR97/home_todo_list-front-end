@@ -1,0 +1,26 @@
+.center {
+  height: 800px;
+  border: 3px solid green;
+  background: #456;
+}
+
+.projects-container {
+  margin: 200 auto;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  max-width: 800px;
+  border: 3px solid green;
+}
+
+table {
+  width: 100%;
+}
+
+// .single-element {
+//   max-width: 200px;
+//   max-height: 150px;
+//   border: 3px solid red;
+//   float: left;
+// }

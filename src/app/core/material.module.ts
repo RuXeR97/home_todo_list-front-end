@@ -10,6 +10,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   imports: [
@@ -23,7 +27,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule,
   ],
   exports: [
     CommonModule,
@@ -36,7 +41,11 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
-  ]
+    MatSnackBarModule,
+    MatGridListModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+  ],
 })
 export class CustomMaterialModule {}

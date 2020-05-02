@@ -3,16 +3,16 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
-import { Configuration } from "../core/configuration";
-import { AuthenticationService } from "../services/authentication.service";
+import { Configuration } from "../../core/configuration";
+import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
-  selector: "app-login-page",
-  templateUrl: "./login-page.component.html",
-  styleUrls: ["./login-page.component.scss"],
+  selector: "app-register-page",
+  templateUrl: "./register-page.component.html",
+  styleUrls: ["./register-page.component.scss"],
 })
-export class LoginPageComponent implements OnInit {
-  loginForm: FormGroup;
+export class RegisterPageComponent implements OnInit {
+  registerForm: FormGroup;
   isSubmitted = false;
   returnUrl = "";
 
@@ -24,15 +24,15 @@ export class LoginPageComponent implements OnInit {
     private snackBar: MatSnackBar,
     private configuration: Configuration
   ) {
-    // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/projects"]);
     }
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       username: ["", Validators.required],
+      email: ["", Validators.required],
       password: ["", Validators.required],
     });
 
@@ -42,20 +42,29 @@ export class LoginPageComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get formControls() {
-    return this.loginForm.controls;
+    return this.registerForm.controls;
   }
-  login() {
+  register() {
     this.isSubmitted = true;
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
       return;
     }
 
     this.authenticationService
-      .login(this.formControls.username.value, this.formControls.password.value)
+      .register(
+        this.formControls.username.value,
+        this.formControls.email.value,
+        this.formControls.password.value
+      )
       .pipe(first())
       .subscribe(
         (data) => {
           this.router.navigate([this.returnUrl]);
+          this.snackBar.open(
+            "Registration went successfully",
+            "OK",
+            this.configuration.getSnackBarConfig()
+          );
         },
         (error) => {
           this.snackBar.open(
