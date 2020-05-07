@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
+import { AuthenticationService } from "src/app/services/authentication.service";
 
 @Component({
   selector: "app-main-nav",

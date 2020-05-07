@@ -23,6 +23,16 @@ mat-toolbar a {
   text-decoration: none;
 }
 
-.toolbar-spacer {
-  flex: 1 1 auto;
+mat-sidenav {
+  background-color: #166d3b;
+  background-image: linear-gradient(147deg, #166d3b 0%, #607196 74%);
+}
+
+mat-sidenav-content {
+  background-color: #babfd1;
+  background-image: linear-gradient(315deg, #babfd1 0%, #607196 74%);
+}
+
+.white-color {
+  color: white;
 }

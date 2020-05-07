@@ -14,6 +14,9 @@ import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule, MatRippleModule } from "@angular/material/core";
+import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   imports: [
@@ -29,6 +32,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatSidenavModule,
+    MatNativeDateModule,
   ],
   exports: [
     CommonModule,
@@ -46,6 +50,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatListModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatDatepickerModule,
+    MatSortModule,
   ],
 })
 export class CustomMaterialModule {}
