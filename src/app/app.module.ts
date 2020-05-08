@@ -20,6 +20,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MainNavComponent } from "./components/main-nav/main-nav.component";
 import { ProjectToAddDialogComponent } from "./components/project-to-add-dialog/project-to-add-dialog.component";
+import { ForgotPasswordPageComponent } from "./pages/forgot-password-page/forgot-password-page.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProjectToAddDialogComponent } from "./components/project-to-add-dialog/
     ProjectsPageComponent,
     MainNavComponent,
     ProjectToAddDialogComponent,
+    ForgotPasswordPageComponent,
   ],
   imports: [
     BrowserAnimationsModule,
