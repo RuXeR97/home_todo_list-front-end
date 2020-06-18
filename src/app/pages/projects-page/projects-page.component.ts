@@ -59,6 +59,7 @@ export class ProjectsPageComponent implements OnInit {
     this.getAllProjects();
 
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    // asd
   }
 
   public openNewProjectDialog(): void {
