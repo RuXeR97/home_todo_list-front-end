@@ -15,6 +15,7 @@ import { ProjectToAddDialogComponent } from "src/app/components/project-to-add-d
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Configuration } from "src/app/core/configuration";
 import { MatSort } from "@angular/material/sort";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-projects-page",
@@ -39,6 +40,7 @@ export class ProjectsPageComponent implements OnInit {
 
   private projects: Project[] = [];
   private projectToAdd: Project;
+  private returnUrl = "/projects";
 
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -48,12 +50,15 @@ export class ProjectsPageComponent implements OnInit {
     public dialog: MatDialog,
     private projectService: ProjectService,
     private snackBar: MatSnackBar,
-    private configuration: Configuration
+    private configuration: Configuration,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
   ngAfterViewInit() {
     this.getAllProjects();
+
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
   public openNewProjectDialog(): void {

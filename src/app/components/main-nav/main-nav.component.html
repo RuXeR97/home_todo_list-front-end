@@ -9,9 +9,18 @@
   >
     <mat-toolbar class="white-color">Menu</mat-toolbar>
     <mat-nav-list>
-      <a class="white-color" mat-list-item href="#">Your projects</a>
-      <a class="white-color" mat-list-item href="#">All projects</a>
-      <a class="white-color" mat-list-item href="#">Statistics</a>
+      <a
+        mat-list-item
+        routerLink="/projects"
+        routerLinkActive="active-list-item"
+        >Projects</a
+      >
+      <a
+        mat-list-item
+        routerLink="/statistics"
+        routerLinkActive="active-list-item"
+        >Statistics</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
